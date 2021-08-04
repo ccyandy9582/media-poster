@@ -51,7 +51,13 @@ module.exports = {
 	mode      : mode,
 	resolve   : {
 		extensions : [ '.js', '.jsx', '.json, tsx, ts' ],
-		mainFiles  : [ 'index' ]
+		mainFiles  : [ 'index' ],
+		fallback: {
+			util: require.resolve("util/"),
+			crypto: require.resolve("crypto-browserify"),
+			https: require.resolve("https-browserify"),
+			http: require.resolve("http-browserify")
+		}
 	},
 	performance: {
 		maxEntrypointSize: 40000,

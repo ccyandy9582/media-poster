@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import FacebookLogin from 'react-facebook-login'
+import FB from 'fb'
 
 export default class Facebook extends Component {
   state = {
@@ -25,7 +26,23 @@ export default class Facebook extends Component {
       picture: response.picture.data.url,
       email: response.email
     })
+    FB.setAccessToken(response.accessToken)
     console.log(this.state);
+  }
+
+  onClick = () => {
+    FB.api(
+      '/sentifly/feed',
+      'POST',
+      { "message": "Testing with api" },
+      (response) => {
+        if (response.error) {
+          console.log('error occurred: '+response.error);
+          return
+        }
+        console.log('successfully posted to page!');
+      }
+    )
   }
 
   render() {
@@ -51,6 +68,9 @@ export default class Facebook extends Component {
           <img src={this.state.picture} alt={this.state.name}/>
           <h2>Welcome {this.state.name}</h2>
           Email: {this.state.email}
+          <button onClick={this.onClick}>
+            post
+          </button>
         </div>
       )
     }
