@@ -1,8 +1,13 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import './index.scss'
+import { Container } from "react-bootstrap"
+
+import Facebook from "./components/Facebook"
 
 ReactDOM.render(
-  <h1>hello react</h1>,
-  document.getElementById("app")
+  <Container>
+    <Facebook />
+  </Container>
+  ,document.getElementById("app")
 )

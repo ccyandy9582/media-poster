@@ -14,7 +14,7 @@ module.exports = {
 	devServer : {
 		contentBase : path.join(__dirname, 'public'),
 		hot         : true,
-		port        : 3000
+		port        : 4000
 	},
 	module    : {
 		rules : [
@@ -39,7 +39,7 @@ module.exports = {
 			}
 		]
 	},
-	devtool   : 'source-map',
+	devtool   : 'inline-source-map',
 	plugins   : [
 		new HtmlWebpackPlugin({
 			template : './public/index.html'
@@ -52,5 +52,8 @@ module.exports = {
 	resolve   : {
 		extensions : [ '.js', '.jsx', '.json, tsx, ts' ],
 		mainFiles  : [ 'index' ]
-	}
+	},
+	performance: {
+		maxEntrypointSize: 40000,
+	},
 };
